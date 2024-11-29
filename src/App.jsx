@@ -3,6 +3,7 @@ import '@mantine/core/styles.css';
 import { MantineProvider, createTheme } from '@mantine/core';
 import ColorScheme from './ColorScheme';
 import './App.css'
+import Fetch from './components/Fetch';
 
 const App = () => {
 
@@ -29,6 +30,7 @@ const App = () => {
     <>
     <MantineProvider theme={theme}>
       <ColorScheme></ColorScheme>
+      <Fetch></Fetch>
     </MantineProvider>
     </>
   )
