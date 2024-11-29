@@ -4,7 +4,7 @@ const PageTitle = () => {
 
     return (
         <>
-        <Title>Guess the Flag</Title>
+        <Title order={2}>GUESS THE FLAG</Title>
         </>
     )
 }

@@ -9,7 +9,8 @@ import PageTitle from './components/PageTitle';
 const App = () => {
 
   const theme = createTheme({
-    fontFamily: 'Open Sans, sans-serif',
+    fontFamily: 'Switzer, sans-serif',
+    headings: { fontFamily: "Poppins, serif", fontWeight: 600 },
     colors: {
       'oklch-blue': [
         'oklch(96.27% 0.0217 238.66)',
