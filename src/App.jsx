@@ -1,9 +1,10 @@
 
 import '@mantine/core/styles.css';
-import { MantineProvider, createTheme } from '@mantine/core';
+import { Container, MantineProvider, createTheme } from '@mantine/core';
 import ColorScheme from './ColorScheme';
 import './App.css'
 import Fetch from './components/Fetch';
+import PageTitle from './components/PageTitle';
 
 const App = () => {
 
@@ -29,8 +30,11 @@ const App = () => {
   return (
     <>
     <MantineProvider theme={theme}>
+      <Container align="center">
       <ColorScheme></ColorScheme>
+      <PageTitle></PageTitle>
       <Fetch></Fetch>
+      </Container>
     </MantineProvider>
     </>
   )

@@ -61,7 +61,7 @@ useEffect (() => {
       <>
         <p>Current flag: {currentFlag.name}</p>
         <Image w={200} src={currentFlag.flag}></Image>
-        <Flex>
+        <Flex align="center" justify="center" direction="column" gap={12}>
             <Button style={{order: randomOrder[0]}} onClick={() => checkGuess(currentFlag.name)} value={currentFlag.name}>{currentFlag.name}</Button>
             <Button style={{order: randomOrder[1]}} onClick={() => checkGuess(wrongAnswer1.name)}>{wrongAnswer1.name}</Button>
             <Button style={{order: randomOrder[2]}} onClick={() => checkGuess(wrongAnswer2.name)}>{wrongAnswer2.name}</Button>
