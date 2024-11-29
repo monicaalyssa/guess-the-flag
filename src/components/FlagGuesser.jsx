@@ -6,6 +6,8 @@ const [currentFlag, setCurrentFlag] = useState(null);
 const [countriesList, setCountriesList] = useState([]);
 const [countriesCounter, setCountriesCounter] = useState(null);
 const [correctGuesses, setCorrectGuesses] = useState(0);
+const [wrongAnswer1, setWrongAnswer1] = useState(null);
+const [wrongAnswer2, setWrongAnswer2] = useState(null);
   
 useEffect(() => {
     const shuffledCountries = [...countries].sort(() => Math.random() - 0.5)
@@ -13,6 +15,21 @@ useEffect(() => {
     setCurrentFlag(shuffledCountries[0])
     setCountriesCounter(shuffledCountries.length)
 }, [countries])
+
+useEffect(() => {
+    const wrongAnswers = () => {
+        const wrongAnswersWithoutCurrent = countries.filter(
+            (currentCountry) => currentCountry.name !== currentFlag.name
+        );
+        const wrongAnswerIndex = [...wrongAnswersWithoutCurrent].sort(() => Math.random() - 0.5)
+        return (
+            wrongAnswerIndex,
+            setWrongAnswer1(wrongAnswerIndex[1]),
+            setWrongAnswer2(wrongAnswerIndex[2])
+        )
+    }
+    wrongAnswers()
+}, [countriesCounter, currentFlag])
 
 const checkGuess = (value) => {
     if (value === currentFlag.name) {
