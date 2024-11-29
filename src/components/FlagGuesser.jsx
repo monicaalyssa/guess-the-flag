@@ -1,4 +1,4 @@
-import { Text } from "@mantine/core";
+import { Image, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 
 const FlagGuesser = ({ countries }) => {
@@ -8,14 +8,21 @@ const [countriesList, setCountriesList] = useState([]);
 useEffect(() => {
     const shuffledCountries = [...countries].sort(() => Math.random() - 0.5)
     setCountriesList(shuffledCountries)
+    setCurrentFlag(shuffledCountries[0])
 }, [countries])
 
   return (
     <>
-      <Text>Flag logic goes here</Text>
+      {currentFlag &&
+      <>
+        <p>Current flag: {currentFlag.name}</p>
+        <Image w={200} src={currentFlag.flag}></Image>
+      </>
+      }
       {countriesList.map((country, index) => (
         <p key={index}>{country.name}</p>
       ))}
+
     </>
   );
 };
