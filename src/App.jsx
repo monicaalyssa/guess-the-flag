@@ -10,7 +10,7 @@ const App = () => {
 
   const theme = createTheme({
     fontFamily: 'Switzer, sans-serif',
-    headings: { fontFamily: "Poppins, serif", fontWeight: 600 },
+    headings: { fontFamily: "Host Grotesk, serif", fontWeight: 800 },
     colors: {
       'oklch-blue': [
         'oklch(96.27% 0.0217 238.66)',

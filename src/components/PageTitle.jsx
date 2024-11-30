@@ -1,10 +1,11 @@
-import { Title } from "@mantine/core";
+import { Text, Title } from "@mantine/core";
 
 const PageTitle = () => {
 
     return (
         <>
-        <Title order={2}>GUESS THE FLAG</Title>
+        <Title lh={1} order={1}>GUESS THE FLAG</Title>
+        <Text size="lg" fw={600}>Countries & territories edition</Text>
         </>
     )
 }
