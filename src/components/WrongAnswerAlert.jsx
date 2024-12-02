@@ -1,5 +1,6 @@
 import { Alert, Transition } from "@mantine/core";
 import { useEffect, useState } from "react";
+import PropTypes from 'prop-types';
 
 const WrongAnswerAlert = ({ showAlert, setShowAlert }) => {
 const [mounted, setMounted] = useState(false)
@@ -27,6 +28,11 @@ useEffect(() => {
       </Transition>
 
   );
+};
+
+WrongAnswerAlert.propTypes = {
+  showAlert: PropTypes.bool.isRequired,
+  setShowAlert: PropTypes.func.isRequired,
 };
 
 export default WrongAnswerAlert;
