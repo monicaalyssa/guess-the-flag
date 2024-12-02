@@ -11,6 +11,7 @@ const [wrongAnswer1, setWrongAnswer1] = useState(null);
 const [wrongAnswer2, setWrongAnswer2] = useState(null);
 const [randomOrder, setRandomOrder] = useState([])
 const order = [1, 2, 3];
+const [hint, setHint] = useState(false)
   
 useEffect(() => {
     const shuffledCountries = [...countries].sort(() => Math.random() - 0.5)
@@ -40,7 +41,8 @@ const checkGuess = (value) => {
         if (countriesList.includes(currentFlag)) {
             setCountriesList((prevList) => prevList.filter((country) => country !== currentFlag));
             setCountriesCounter((prevCounter) => prevCounter -1);
-            setCorrectGuesses((prev) => prev + 1)
+            setCorrectGuesses((prev) => prev + 1);
+            setHint(false);
         }
     } else {
         alert('Wrong')
@@ -72,7 +74,7 @@ useEffect (() => {
             <Button fullWidth variant="default" style={{order: randomOrder[1]}} onClick={() => checkGuess(wrongAnswer1.name)}>{wrongAnswer1.name}</Button>
             <Button fullWidth variant="default" style={{order: randomOrder[2]}} onClick={() => checkGuess(wrongAnswer2.name)}>{wrongAnswer2.name}</Button>
         </Flex>
-        <HelpHint />
+        <HelpHint hint={hint} countryHint={currentFlag.continent} setHint={setHint}/>
       </>
       }
     </>

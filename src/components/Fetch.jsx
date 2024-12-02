@@ -5,13 +5,14 @@ const Fetch = () => {
   const [countries, setCountries] = useState([]);
 
   useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all?fields=name,flags")
+    fetch("https://restcountries.com/v3.1/all?fields=name,flags,continents")
     .then((response) => response.json())
     .then((data) => {
       const flagData = data.map((country) => {
         return {
           name: country.name.common,
-          flag: country.flags.svg
+          flag: country.flags.svg,
+          continent: country.continents
         };
       });
       setCountries(flagData);
