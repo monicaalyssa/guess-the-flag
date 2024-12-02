@@ -1,5 +1,6 @@
 import { Button, Flex, Image, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
+import HelpHint from "./HelpHint";
 
 const FlagGuesser = ({ countries }) => {
 const [currentFlag, setCurrentFlag] = useState(null);
@@ -59,17 +60,21 @@ useEffect (() => {
     <>
       {currentFlag && wrongAnswer1 && wrongAnswer2 && randomOrder &&      
       <>
-        <p>Current flag: {currentFlag.name}</p>
+        {/*<p>Current flag: {currentFlag.name}</p>    <Text>Flags left to guess: {countriesCounter}</Text>*/}
+        
+        <Text mt="md">Correct Guesses: {correctGuesses} / 250</Text>
+        
+        <Flex align="center" justify="center" h={200}>
         <Image w={200} src={currentFlag.flag}></Image>
-        <Flex align="center" justify="center" direction="column" gap={12}>
+        </Flex>
+        <Flex my="lg" w={400} align="center" justify="center" direction="column" gap={12}>
             <Button fullWidth variant="default" style={{order: randomOrder[0]}} onClick={() => checkGuess(currentFlag.name)} value={currentFlag.name}>{currentFlag.name}</Button>
             <Button fullWidth variant="default" style={{order: randomOrder[1]}} onClick={() => checkGuess(wrongAnswer1.name)}>{wrongAnswer1.name}</Button>
             <Button fullWidth variant="default" style={{order: randomOrder[2]}} onClick={() => checkGuess(wrongAnswer2.name)}>{wrongAnswer2.name}</Button>
         </Flex>
+        <HelpHint />
       </>
       }
-      <Text>Correct Guesses: {correctGuesses} / 250</Text>
-      <Text>Flags left to guess: {countriesCounter}</Text>
     </>
   );
 };

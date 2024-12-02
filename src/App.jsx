@@ -1,6 +1,6 @@
 
 import '@mantine/core/styles.css';
-import { Container, MantineProvider, createTheme } from '@mantine/core';
+import { Flex, MantineProvider, createTheme } from '@mantine/core';
 import ColorScheme from './ColorScheme';
 import './App.css'
 import Fetch from './components/Fetch';
@@ -28,14 +28,14 @@ const App = () => {
     primaryColor: 'oklch-blue',
   });
 
+  // <ColorScheme></ColorScheme>
   return (
     <>
     <MantineProvider theme={theme}>
-      <Container align="center">
-      <ColorScheme></ColorScheme>
-      <PageTitle></PageTitle>
-      <Fetch></Fetch>
-      </Container>
+      <Flex className='flex-container' direction="column" justify="center" align="center">
+        <PageTitle></PageTitle>
+        <Fetch></Fetch>
+      </Flex>
     </MantineProvider>
     </>
   )
