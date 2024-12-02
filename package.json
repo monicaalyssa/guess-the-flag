@@ -1,6 +1,6 @@
 {
   "name": "guess-the-flag",
-  "homepage": "https://monicaalyssa.github.io/guess-the-flag/",
+  "homepage": "https://monicaalyssa.github.io/guess-the-flag",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,7 +9,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "vite build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
