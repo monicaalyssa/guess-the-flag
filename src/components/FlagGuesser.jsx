@@ -1,4 +1,4 @@
-import { Alert, Button, Flex, Image, Text } from "@mantine/core";
+import { Button, Flex, Image, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 import HelpHint from "./HelpHint";
 import WrongAnswerAlert from "./WrongAnswerAlert";
@@ -75,9 +75,7 @@ useEffect (() => {
   return (
     <>
       {currentFlag && wrongAnswer1 && wrongAnswer2 && randomOrder &&      
-      <>
-        {/*<p>Current flag: {currentFlag.name}</p>    <Text>Flags left to guess: {countriesCounter}</Text>*/}
-        
+      <>        
         <Text my="md">Correct Guesses: {correctGuesses} / 250</Text>
         
         <Flex align="center" justify="center" h={230}>
