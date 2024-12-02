@@ -20,9 +20,9 @@ useEffect(() => {
 
   return (
 
-      <Transition mounted={mounted} transition="pop" duration={300}>
+      <Transition mounted={mounted} transition="pop" duration={200}>
       {(styles) => (
-        <Alert classNames={{ icon: 'alert-icon' }} style={styles} icon={icon} pos="absolute" bottom={-40} variant="light" color="red" title="Incorrect answer"></Alert>
+        <Alert classNames={{ icon: 'alert-icon' }}style={styles} icon={icon} pos="absolute" bottom={-40} variant="light" color="red" title="Incorrect answer"></Alert>
       )}
       </Transition>
 

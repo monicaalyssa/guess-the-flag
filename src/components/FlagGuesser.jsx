@@ -1,7 +1,8 @@
-import { Button, Flex, Image, Text } from "@mantine/core";
+import { Alert, Button, Flex, Image, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 import HelpHint from "./HelpHint";
 import WrongAnswerAlert from "./WrongAnswerAlert";
+import CorrectAnswerAlert from "./CorrectAnswerAlert";
 
 const FlagGuesser = ({ countries }) => {
 const [currentFlag, setCurrentFlag] = useState(null);
@@ -16,7 +17,8 @@ const [hint, setHint] = useState(false)
 const [showAlert, setShowAlert] = useState(false);
 const [wrongAnswerBorder, setWrongAnswerBorder] = useState(false)
 const [showCorrectAlert, setShowCorrectAlert] = useState(false);
-  
+const [isDisabled, setIsDisabled] = useState(false)
+
 useEffect(() => {
     const shuffledCountries = [...countries].sort(() => Math.random() - 0.5)
     setCountriesList(shuffledCountries)
@@ -44,12 +46,16 @@ const checkGuess = (value) => {
     if (value === currentFlag.name) {
         if (countriesList.includes(currentFlag)) {
             setShowCorrectAlert(true)
-            setCountriesList((prevList) => prevList.filter((country) => country !== currentFlag));
-            setCountriesCounter((prevCounter) => prevCounter -1);
-            setCorrectGuesses((prev) => prev + 1);
-            setHint(false);
-            setShowAlert(false); 
-            setWrongAnswerBorder(false);
+            setIsDisabled(true)
+            setTimeout(() => {
+                setCorrectGuesses((prev) => prev + 1);
+                setWrongAnswerBorder(false);
+                setShowAlert(false); 
+                setCountriesCounter((prevCounter) => prevCounter - 1);
+                setCountriesList((prevList) => prevList.filter((country) => country !== currentFlag));
+                setHint(false);
+                setIsDisabled(false)
+            }, 1500); 
         }
     } else {
         setShowAlert(true)
@@ -78,14 +84,17 @@ useEffect (() => {
         <Image style={wrongAnswerBorder ? { boxShadow: "0 0 0 2px red" } : {}} w={200} src={currentFlag.flag}></Image>
         </Flex>
         <Flex my="lg" w={400} align="center" justify="center" direction="column" gap={12}>
-            <Button fullWidth variant="default" style={{order: randomOrder[0]}} onClick={() => checkGuess(currentFlag.name)} value={currentFlag.name}>{currentFlag.name}</Button>
-            <Button fullWidth variant="default" style={{order: randomOrder[1]}} onClick={() => checkGuess(wrongAnswer1.name)}>{wrongAnswer1.name}</Button>
-            <Button fullWidth variant="default" style={{order: randomOrder[2]}} onClick={() => checkGuess(wrongAnswer2.name)}>{wrongAnswer2.name}</Button>
+            <Button className="button-options" disabled={isDisabled} fullWidth variant="default" style={{order: randomOrder[0]}} onClick={() => checkGuess(currentFlag.name)} value={currentFlag.name}>{currentFlag.name}</Button>
+            <Button className="button-options" disabled={isDisabled} fullWidth variant="default" style={{order: randomOrder[1]}} onClick={() => checkGuess(wrongAnswer1.name)}>{wrongAnswer1.name}</Button>
+            <Button className="button-options" disabled={isDisabled} fullWidth variant="default" style={{order: randomOrder[2]}} onClick={() => checkGuess(wrongAnswer2.name)}>{wrongAnswer2.name}</Button>
         </Flex>
         <HelpHint hint={hint} countryHint={currentFlag.continent} setHint={setHint}/>
         {showAlert && (
-      <WrongAnswerAlert setShowAlert={setShowAlert} showAlert={showAlert}/>
-      )}
+        <WrongAnswerAlert setShowAlert={setShowAlert} showAlert={showAlert}/>
+        )}
+        {showCorrectAlert && (
+        <CorrectAnswerAlert showCorrectAlert={showCorrectAlert} setShowCorrectAlert={setShowCorrectAlert}/>
+        )}
       </>
       }
     </>

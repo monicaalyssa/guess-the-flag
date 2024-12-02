@@ -9,3 +9,15 @@
 .alert-icon {
     margin-inline-end: var(--mantine-spacing-xs);
 }
+
+.green-alert {
+    margin-inline-end: 0;
+    margin-top: 0;
+}
+
+.button-options {
+    &:disabled,
+    &[data-disabled] {
+        border: calc(0.0625rem* var(--mantine-scale)) solid var(--mantine-color-default-border);
+    }
+}
