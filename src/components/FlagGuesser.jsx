@@ -78,7 +78,7 @@ useEffect (() => {
       <>
         {/*<p>Current flag: {currentFlag.name}</p>    <Text>Flags left to guess: {countriesCounter}</Text>*/}
         
-        <Text mt="md">Correct Guesses: {correctGuesses} / 250</Text>
+        <Text my="md">Correct Guesses: {correctGuesses} / 250</Text>
         
         <Flex align="center" justify="center" h={230}>
         <Image style={wrongAnswerBorder ? { boxShadow: "0 0 0 2px red" } : {}} w={200} src={currentFlag.flag}></Image>

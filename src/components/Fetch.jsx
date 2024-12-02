@@ -12,7 +12,7 @@ const Fetch = () => {
         return {
           name: country.name.common,
           flag: country.flags.svg,
-          continent: country.continents
+          continent: country.continents.length > 1 ? country.continents.join(", ") : country.continents[0]
         };
       });
       setCountries(flagData);
