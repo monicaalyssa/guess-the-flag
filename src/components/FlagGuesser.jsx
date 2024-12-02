@@ -1,6 +1,7 @@
 import { Button, Flex, Image, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 import HelpHint from "./HelpHint";
+import WrongAnswerAlert from "./WrongAnswerAlert";
 
 const FlagGuesser = ({ countries }) => {
 const [currentFlag, setCurrentFlag] = useState(null);
@@ -12,6 +13,9 @@ const [wrongAnswer2, setWrongAnswer2] = useState(null);
 const [randomOrder, setRandomOrder] = useState([])
 const order = [1, 2, 3];
 const [hint, setHint] = useState(false)
+const [showAlert, setShowAlert] = useState(false);
+const [wrongAnswerBorder, setWrongAnswerBorder] = useState(false)
+const [showCorrectAlert, setShowCorrectAlert] = useState(false);
   
 useEffect(() => {
     const shuffledCountries = [...countries].sort(() => Math.random() - 0.5)
@@ -36,16 +40,20 @@ useEffect(() => {
 }, [countriesCounter, countriesList, currentFlag])
 
 const checkGuess = (value) => {
+    
     if (value === currentFlag.name) {
-        alert('You guessed correctly!')
         if (countriesList.includes(currentFlag)) {
+            setShowCorrectAlert(true)
             setCountriesList((prevList) => prevList.filter((country) => country !== currentFlag));
             setCountriesCounter((prevCounter) => prevCounter -1);
             setCorrectGuesses((prev) => prev + 1);
             setHint(false);
+            setShowAlert(false); 
+            setWrongAnswerBorder(false);
         }
     } else {
-        alert('Wrong')
+        setShowAlert(true)
+        setWrongAnswerBorder(true)
     }
 }
 
@@ -66,8 +74,8 @@ useEffect (() => {
         
         <Text mt="md">Correct Guesses: {correctGuesses} / 250</Text>
         
-        <Flex align="center" justify="center" h={200}>
-        <Image w={200} src={currentFlag.flag}></Image>
+        <Flex align="center" justify="center" h={230}>
+        <Image style={wrongAnswerBorder ? { boxShadow: "0 0 0 2px red" } : {}} w={200} src={currentFlag.flag}></Image>
         </Flex>
         <Flex my="lg" w={400} align="center" justify="center" direction="column" gap={12}>
             <Button fullWidth variant="default" style={{order: randomOrder[0]}} onClick={() => checkGuess(currentFlag.name)} value={currentFlag.name}>{currentFlag.name}</Button>
@@ -75,6 +83,9 @@ useEffect (() => {
             <Button fullWidth variant="default" style={{order: randomOrder[2]}} onClick={() => checkGuess(wrongAnswer2.name)}>{wrongAnswer2.name}</Button>
         </Flex>
         <HelpHint hint={hint} countryHint={currentFlag.continent} setHint={setHint}/>
+        {showAlert && (
+      <WrongAnswerAlert setShowAlert={setShowAlert} showAlert={showAlert}/>
+      )}
       </>
       }
     </>

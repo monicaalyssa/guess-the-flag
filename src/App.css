@@ -5,3 +5,7 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+
+.alert-icon {
+    margin-inline-end: var(--mantine-spacing-xs);
+}
